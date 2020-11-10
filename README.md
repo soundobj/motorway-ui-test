@@ -88,3 +88,4 @@ Your work will be tested in the browser of your choice, so please specify this w
 - react-bootstrap for rendering image modal
 - classnames for css className management
 - react-jsonschema-form for form generation
+- I have used chrome's current version for development
