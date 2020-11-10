@@ -84,8 +84,8 @@ Your work will be tested in the browser of your choice, so please specify this w
 - I had to disable CORS to get the images through
 
 ### Dependencies
-- Typescript and node-sass for better development experience
-- react-bootstrap for rendering image modal
-- classnames for css className management
-- react-jsonschema-form for form generation
-- I have used chrome's current version for development
+- Typescript and node-sass for better development experience.
+- react-bootstrap for rendering image modal.
+- classnames for css className management.
+- react-jsonschema-form for form generation.
+- I have used chrome's current version for development.
