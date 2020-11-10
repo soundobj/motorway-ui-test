@@ -76,3 +76,15 @@ We appreciate that your time is valuable and recommend you not spend more than 2
 
 The goal of the test is to prove your understanding of the concepts of modern HTML/CSS/JS, but not to produce something production ready or pixel perfect.
 Your work will be tested in the browser of your choice, so please specify this when submitting. This can include pre-release browsers such as Chrome Canary or Safari Technology Preview if you want to work with experimental features.
+
+
+## Test implementation notes
+
+- There was a bug in App.js. the app was pointing to the wrong server port: it was hardcoded to 3001 but should be 5000.
+- I had to disable CORS to get the images through
+
+### Dependencies
+- Typescript and node-sass for better development experience
+- react-bootstrap for rendering image modal
+- classnames for css className management
+- react-jsonschema-form for form generation
