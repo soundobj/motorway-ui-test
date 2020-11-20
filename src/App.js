@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { isEqual } from "lodash"
 
 import Image from "./image/Image";
 import UserForm from "./userForm/UserForm";
@@ -26,13 +27,44 @@ const Performance = () => (
   </article>
 );
 
+const ImagesGrid = (props) => {
+  const gridCellTypeClasses = ["horizontal", "vertical", "big"];
+  const { images, onClick } = props;
+  return (
+    <ul className="images">
+      {images.map((img, index) => (
+        <>
+          <li
+            key={`${img.id}-${index}`}
+            className={gridCellTypeClasses[getRandomArbitrary(0, 2)]}
+            onClick={() => onClick(img.url)}
+          >
+            <Image src={img.url} />
+          </li>
+          <li
+            key={`${img.id}-profile-${index}`}
+            className={gridCellTypeClasses[getRandomArbitrary(0, 2)]}
+            onClick={() => onClick(img.user.profile_image)}
+          >
+            <Image src={img.user.profile_image} />
+          </li>
+        </>
+      ))}
+    </ul>
+  );
+};
+
+const MemoImagesGrid = React.memo(ImagesGrid, (props, nextProps) => {
+  if (isEqual(props.images, nextProps.images)) {
+    return true;
+  }
+});
+
 const App = () => {
   const [images, setImages] = useState();
   const [show, setShow] = useState(false);
   const [currentModalImage, setCurrentModalImage] = useState(null);
   const handleClose = () => setShow(false);
-
-  const gridCellTypeClasses = ["horizontal", "vertical", "big"];
 
   const openModal = (imgUrl) => {
     setShow(true);
@@ -56,26 +88,7 @@ const App = () => {
       {images && (
         <>
           <Heading text="UI Development" />
-          <ul className="images">
-            {images.map((img, index) => (
-              <>
-                <li
-                  key={`${img.id}-${index}`}
-                  className={gridCellTypeClasses[getRandomArbitrary(0, 2)]}
-                  onClick={() => openModal(img.url)}
-                >
-                  <Image src={img.url} />
-                </li>
-                <li
-                  key={`${img.id}-profile-${index}`}
-                  className={gridCellTypeClasses[getRandomArbitrary(0, 2)]}
-                  onClick={() => openModal(img.user.profile_image)}
-                >
-                  <Image src={img.user.profile_image} />
-                </li>
-              </>
-            ))}
-          </ul>
+          <MemoImagesGrid images={images} onClick={openModal} />
         </>
       )}
       <Heading text="Performance" />
