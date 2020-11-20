@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { isEqual } from "lodash"
+import { isEqual } from "lodash";
 
 import Image from "./image/Image";
 import UserForm from "./userForm/UserForm";
@@ -89,28 +89,28 @@ const App = () => {
         <>
           <Heading text="UI Development" />
           <MemoImagesGrid images={images} onClick={openModal} />
+          <Heading text="Performance" />
+          <Performance />
+          <Heading text="User Form" />
+          <UserForm />
+          <Modal
+            show={show}
+            onHide={handleClose}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Body className="image__modal__body">
+              <Image src={currentModalImage} className="image__modal" />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </>
       )}
-      <Heading text="Performance" />
-      <Performance />
-      <Heading text="User Form" />
-      <UserForm />
-      <Modal
-        show={show}
-        onHide={handleClose}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Body className="image__modal__body">
-          <Image src={currentModalImage} className="image__modal" />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
